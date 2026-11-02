@@ -1,0 +1,36 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// Daftar mood (10 data tetap, diisi lewat seed)
+model Mood {
+  id    Int    @id @default(autoincrement())
+  kode  String @unique @db.VarChar(30) // contoh: "hujan-ngopi"
+  nama  String @db.VarChar(40)         // contoh: "Hujan & Ngopi"
+  warna String @db.VarChar(7)          // hex, contoh: "#6B8CAE"
+  lagu  Lagu[]
+
+  @@map("mood")
+}
+
+// Lagu yang disimpan ke dalam toples
+model Lagu {
+  id     Int      @id @default(autoincrement())
+  judul  String   @db.VarChar(80)
+  artis  String   @db.VarChar(60)
+  cerita String?  @db.VarChar(200)
+  link   String?  @db.VarChar(500)
+  dibuat DateTime @default(now())
+  diubah DateTime @updatedAt
+
+  moodId Int
+  mood   Mood @relation(fields: [moodId], references: [id], onDelete: Restrict)
+
+  @@index([moodId])
+  @@map("lagu")
+}

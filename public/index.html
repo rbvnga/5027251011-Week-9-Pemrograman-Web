@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>week 9</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="bar">
+    <a class="merek" href="#">
+      <span class="piringan" aria-hidden="true"></span>
+      Memory Tunes
+    </a>
+  </header>
+
+  <section class="hero">
+    <p class="eyebrow">Koleksi lagu pribadi</p>
+    <h1><em>Soundtrack</em> of My Memories</h1>
+
+    <dl class="statistik">
+      <div><dt>Total lagu</dt><dd id="stat-total">–</dd></div>
+      <div><dt>Mood terbanyak</dt><dd id="stat-mood" class="kecil-teks">–</dd></div>
+    </dl>
+  </section>
+
+  <section class="acak" aria-labelledby="judul-acak">
+    <h2 id="judul-acak">Bingung mau dengar apa?</h2>
+    <div class="acak-kontrol">
+      <label class="sr-only" for="acak-mood">Pilih mood</label>
+      <select id="acak-mood"></select>
+      <button class="tombol emas" id="btn-acak" type="button">Lagu Acak Sesuai Mood</button>
+    </div>
+  </section>
+
+  <main class="tata-letak">
+
+    <!-- FORM TAMBAH / EDIT -->
+    <aside class="panel form-panel">
+      <h2 id="judul-form">Tambahkan lagu</h2>
+      <form id="form-lagu" novalidate>
+
+        <div class="medan">
+          <label for="f-judul">Judul lagu</label>
+          <input id="f-judul" type="text" maxlength="80" autocomplete="off" placeholder="Contoh: Riders on the Storm">
+          <p class="galat" id="err-judul" role="alert"></p>
+        </div>
+
+        <div class="medan">
+          <label for="f-artis">Artis</label>
+          <input id="f-artis" type="text" maxlength="60" autocomplete="off" placeholder="Contoh: The Doors">
+          <p class="galat" id="err-artis" role="alert"></p>
+        </div>
+
+        <div class="medan">
+          <label for="f-mood">Mood</label>
+          <select id="f-mood"></select>
+          <p class="galat" id="err-moodId" role="alert"></p>
+        </div>
+
+        <div class="medan">
+          <label for="f-cerita">How was the memory? <span class="opsional">opsional</span></label>
+          <textarea id="f-cerita" rows="3" maxlength="200" placeholder="Di mana atau kapan lagu ini menempel di ingatanmu?"></textarea>
+          <span class="hitung" id="hitung-cerita">0/200</span>
+        </div>
+
+        <div class="medan">
+          <label for="f-link">Link lagu <span class="opsional">opsional</span></label>
+          <input id="f-link" type="url" autocomplete="off" placeholder="https://youtube.com/...">
+          <p class="galat" id="err-link" role="alert"></p>
+        </div>
+
+        <div class="aksi-form">
+          <button class="tombol emas" id="btn-simpan" type="submit">Simpan</button>
+          <button class="tombol-garis" id="btn-batal" type="button" hidden>Batal</button>
+        </div>
+      </form>
+    </aside>
+
+    <!-- DAFTAR LAGU -->
+    <section class="daftar-panel" aria-labelledby="judul-daftar">
+      <div class="daftar-kepala">
+        <h2 id="judul-daftar">Echoes & Melodies</h2>
+        <span class="info" id="info-jumlah" aria-live="polite"></span>
+      </div>
+
+      <div class="toolbar">
+        <div>
+          <label class="sr-only" for="cari">Cari judul atau artis</label>
+          <input id="cari" type="search" placeholder="Cari judul, artis, atau #id…" autocomplete="off">
+        </div>
+        <div>
+          <label class="sr-only" for="urut">Urutkan</label>
+          <select id="urut">
+            <option value="terbaru">Terbaru ditambahkan</option>
+            <option value="judul">Judul A–Z</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="chips" id="chips" role="group" aria-label="Filter mood"></div>
+
+      <div class="grid" id="daftar">
+        <p class="kosong">Membuka toples…</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="kaki-halaman">5027251011</footer>
+
+  <!-- DIALOG HAPUS -->
+  <dialog id="dlg-hapus">
+    <div class="dlg-isi">
+      <h3>Keluarkan dari toples?</h3>
+      <p>Yakin mau mengeluarkan <strong id="hapus-judul"></strong> dari toples? Tindakan ini tidak bisa dibatalkan.</p>
+      <div class="dlg-aksi">
+        <button class="tombol-garis" id="btn-hapus-batal" type="button">Batal</button>
+        <button class="tombol bahaya" id="btn-hapus-ya" type="button">Ya, hapus</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- DIALOG LAGU ACAK -->
+  <dialog id="dlg-acak">
+    <div class="dlg-isi">
+      <p class="eyebrow tengah">Dari dalam toples</p>
+      <div id="acak-isi"></div>
+      <div class="dlg-aksi">
+        <button class="tombol-garis" id="btn-acak-tutup" type="button">Tutup</button>
+        <button class="tombol emas" id="btn-acak-lagi" type="button">Acak lagi</button>
+      </div>
+    </div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

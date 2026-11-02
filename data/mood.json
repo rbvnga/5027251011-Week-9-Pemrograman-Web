@@ -1,0 +1,12 @@
+[
+  { "kode": "hujan-ngopi", "nama": "Hujan & Ngopi", "warna": "#6B8CAE" },
+  { "kode": "begadang", "nama": "Begadang", "warna": "#4B3F72" },
+  { "kode": "baper-tengah-malam", "nama": "Baper Tengah Malam", "warna": "#E58FA8" },
+  { "kode": "semangat-pagi", "nama": "Semangat Pagi", "warna": "#F4C430" },
+  { "kode": "perjalanan", "nama": "Perjalanan", "warna": "#4CAF7A" },
+  { "kode": "nostalgia", "nama": "Nostalgia", "warna": "#8B5E3C" },
+  { "kode": "gabut-santai", "nama": "Gabut Santai", "warna": "#F29E6B" },
+  { "kode": "jatuh-cinta", "nama": "Jatuh Cinta", "warna": "#E05A6D" },
+  { "kode": "lagi-fokus", "nama": "Lagi Fokus", "warna": "#2F8F9D" },
+  { "kode": "healing", "nama": "Healing", "warna": "#9CCB86" }
+]
