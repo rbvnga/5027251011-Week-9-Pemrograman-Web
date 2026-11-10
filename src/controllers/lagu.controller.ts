@@ -51,7 +51,7 @@ export const getAllLagu = async (req: Request, res: Response) => {
   });
 };
 
-// GET /api/lagu/acak?mood=kode  (parameter mood opsional)
+// GET /api/lagu/acak?mood=[nama mood]
 export const getLaguAcak = async (req: Request, res: Response) => {
   const kode = typeof req.query.mood === "string" && req.query.mood ? req.query.mood : undefined;
   const where = kode ? { mood: { kode } } : {};

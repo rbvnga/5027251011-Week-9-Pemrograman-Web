@@ -10,9 +10,9 @@ datasource db {
 // Daftar mood (10 data tetap, diisi lewat seed)
 model Mood {
   id    Int    @id @default(autoincrement())
-  kode  String @unique @db.VarChar(30) // contoh: "hujan-ngopi"
-  nama  String @db.VarChar(40)         // contoh: "Hujan & Ngopi"
-  warna String @db.VarChar(7)          // hex, contoh: "#6B8CAE"
+  kode  String @unique @db.VarChar(30) 
+  nama  String @db.VarChar(40)         
+  warna String @db.VarChar(7)          
   lagu  Lagu[]
 
   @@map("mood")

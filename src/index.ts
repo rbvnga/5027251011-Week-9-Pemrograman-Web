@@ -8,8 +8,8 @@ const app = express();
 const PORT = Number(process.env.PORT) || 3000;
 
 app.use(express.json());
-app.use(express.static(path.join(process.cwd(), "public"))); // front-end
-app.use("/api", routes);                                     // back-end
+app.use(express.static(path.join(process.cwd(), "public"))); 
+app.use("/api", routes);                                     
 app.use("/api", notFound);
 app.use(errorHandler);
 
